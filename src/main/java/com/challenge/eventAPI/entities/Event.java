@@ -1,17 +1,23 @@
 package com.challenge.eventAPI.entities;
 
 import com.challenge.eventAPI.entities.enums.EventStatus;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
 
+@Entity
 public class Event {
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private Instant startDate;
+    private String startDate;
 
-    private Instant endDate;
+    private String endDate;
     private Float currency;
     private EventStatus eventStatus;
 
@@ -19,7 +25,7 @@ public class Event {
 
     }
 
-    public Event(Long id, String title, Instant startDate, Instant endDate,Float currency, EventStatus eventStatus) {
+    public Event(Long id, String title, String startDate, String endDate,Float currency, EventStatus eventStatus) {
         this.id = id;
         this.endDate = endDate;
         this.title = title;
@@ -47,19 +53,19 @@ public class Event {
         this.title = title;
     }
 
-    public Instant getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Instant getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setStartDate(Instant startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Instant endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
