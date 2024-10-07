@@ -3,8 +3,13 @@ package com.challenge.eventAPI.services;
 import java.util.List;
 import com.challenge.eventAPI.entities.Event;
 import com.challenge.eventAPI.repositories.EventRepository;
+import com.challenge.eventAPI.services.exceptions.DatabaseException;
+import com.challenge.eventAPI.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,13 +27,25 @@ public class EventService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        try{
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException();
+        }
+        catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public Event update(Long id, Event obj){
-        Event entity = repository.getReferenceById(id);
-        updateData(entity,obj);
-        return  repository.save(entity);
+        try{
+            Event entity = repository.getReferenceById(id);
+            updateData(entity,obj);
+            return  repository.save(entity);
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException();
+        }
+
     }
 
     public void updateData(@NotNull Event entity, @NotNull Event  obj){
