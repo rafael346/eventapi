@@ -3,6 +3,14 @@
   
 Application designed to manage events, allowing the user to create, edit and delete events.
 
+## Overview
+The application is basically a CRUD, made to manage events.
+
+### Technical decisions
+I used a simple architecture just applying the basic concepts and patterns of api development.
+
+Because it's just one specific table, without many links and with a low volume of data, the database could be either relational or non-relational.
+
 ## How to Run
 
 ### Pre-requisites
@@ -39,6 +47,10 @@ Installing the dependencies may be different depending on the ide you use.<p>
 
 Ater that jus clik on RUN button on your IDE<p>
 The application runs on localhost:8080
+
+### Application architecture
+![arch](https://github.com/user-attachments/assets/fc992938-ce31-45f3-b6dd-82749c451c94)
+
 
 ## Endpoints
 - ```GET /event```: Return a list of events<p>
