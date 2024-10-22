@@ -6,11 +6,6 @@ Application designed to manage events, allowing the user to create, edit and del
 ## Overview
 The application is basically a CRUD, made to manage events made with SpringBoot and PostgreSQL.
 
-### Technical decisions
-I used a simple architecture just applying the basic concepts and patterns of api development.
-
-Because it's just one specific table, without many links and with a low volume of data, the database could be either relational or non-relational.
-
 ## How to Run
 
 ### Pre-requisites
